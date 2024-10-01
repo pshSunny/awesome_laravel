@@ -74,14 +74,50 @@ $ cd ~/Sites
 $ valet park => 디렉토리 파킹. 하위 디렉토리를 http://디렉토리명.test로 엑세스 가능
 ```
 
+# ETC 설치
+## xDebug 설치 (커버리지)
+```
+pecl install xdebug
+```
+
+### 커버리지
+XDEBUG_MODE=coverage php artisan test --coverage
+
+### perl 설치 안된 경우
+```
+brew install perl
+```
+
+### "/usr/bin/perl5.30: bad interpreter: No such file or directory" 에러 발생한 경우
+```
+brew update
+brew upgrade autoconf
+```
+
+
 # VSCode
 ## 확장 플러그인
-- Korean Language Pack : VS Code용 한국어 팩
-- Laravel Blade Snippets : 라라벨의 뷰를 담당하는 블레이드의 템플릿 제공
-- Laravel Snippets : 라라벨의 코드 템플릿 제공
-- Laravel goto view : 라라벨 컨트롤러에서 ctrl 키를 누른 채로 클릭하면 곧바로 해당 뷰로 이동
-- Larabel Blade Spacer : 블레이드 템플릿에서 { 기호 뒤에 자동으로 공백 추가
+- Korean Language Pack (Microsoft) : VS Code용 한국어 팩
+- Laravel Artisan (Ryan Naddy) : artisan 명령어를 바로바로 제공해주는 익스텐션 => `>route list`
+- Laravel Blade Snippets (Winnie Lin) : 라라벨 뷰를 담당하는 블레이드 템플릿에서 코드 자동완성 도와주는 익스텐션
+  ```
+  html:5
+  div.abc>div.xyz
+  h1
+  bye => @yield
+  bse => @section
+  ```
+- Larabel Blade Spacer (Austen Cameron) : 블레이드 템플릿에서 { 기호 뒤에 자동으로 공백 추가, 블레이드 코드 (`{{  }}` `{!!  !!}`) 인식하는 익스텐션 
+- Laravel Snippets (Winnie Lin) : 라라벨의 코드 자동완성 익스텐션
+- Laravel goto view (ctf0) : 라라벨 컨트롤러에서 ctrl 키를 누른 채로 클릭하면 곧바로 해당 뷰로 이동
+    - 프로젝트 디렉토리 내 라라벨 디렉토리라면 확장 설정에서 Default Path 설정 필요
+- laravel extra intellisense (amir) : 라라벨 route 코드 자동완성 익스텐션
+    - 되는지 모르겠음.
 - MySQL (Weijan Chen) : Database-client => https://yooloo.tistory.com/m/264
+- material icon theme (Philipp Kief) : 여러 파일과 디렉토리의 아이콘을 알기 쉽게 바꿔주는 익스텐션
+- env (Jakka Prihatna) : .env 파일 코드를 보기쉽게 색깔 넣어주는 익스텐션
+- PHP IntelliSense (Damjan Cvetko) : PHP 고급 자동완성 및 리팩터링 지원
+- PHP Intelephense (Ben Mewburn) :  문서, 작업 영역, 기본 제공 생성자, 메서드 및 함수에 대한 자세한 서명 도움, 오류 허용 구문 분석기를 통해 열린 파일에 대한 여러 구문 분석 오류 진단
 
 ## 단축키
 command+p : 파일로 이동

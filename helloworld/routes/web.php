@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    //return view('welcome');
-    return redirect()->route('blog_index');
+    return view('welcome');
+    //return redirect()->route('blog_index');
 });
 
 Route::get('/blog', [\App\Http\Controllers\BlogPostController::class, 'index'])->name('blog_index');
@@ -29,6 +29,10 @@ Route::post('/comment', [\App\Http\Controllers\CommentController::class, 'store'
 
 Route::get('/auth/regist', [\App\Http\Controllers\AuthController::class, 'create']);
 Route::post('/auth/regist', [\App\Http\Controllers\AuthController::class, 'store']);
-Route::get('/auth/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::get('/auth/login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
 Route::post('/auth/login', [\App\Http\Controllers\AuthController::class, 'login_store']);
 Route::get('/auth/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+
+Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function() {
+    Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
+});
