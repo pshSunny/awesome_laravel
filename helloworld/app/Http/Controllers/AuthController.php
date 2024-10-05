@@ -12,7 +12,14 @@ class AuthController extends Controller
         return view('auth.regist');
     }
 
-    public function store() {
+    public function store(Request $request) {
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users|max:255',
+            'password' => 'required|max:255'
+        ]);
+
+
         $user = User::create(request(['name', 'email', 'password']));
         return redirect()->to('/auth/login');
     }

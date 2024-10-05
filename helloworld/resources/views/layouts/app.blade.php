@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ config('app.name') }}</title>
+        <title>{{ config('app.name') }} - @yield('title', '^^')</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
@@ -12,16 +12,18 @@
                 <div class="col-12 pt-2">
                     <div class="row">
                         <div class="col-8">
-                            <h1 class="display-one">라라벨 가볍게 따라하기</h1>
-                            <p>세시간만에 라라벨 9버전을 배워 봅시다.</p>
+                            <h1 class="display-one"><a href="{{ url('/') }}">라라벨 가볍게 따라하기</a></h1>
+                            <h2>@yield('title')</h2>
                         </div>
                         <div class="col-4">
                             @if (Auth::check())
-                                <a href="/auth/logout">로그아웃</a>
+                                <a href="{{ route('logout') }}">로그아웃</a>
                             @else
-                                <a href="/auth/login">로그인</a>
-                                <a href="/auth/regist">회원가입</a>
+                                <a href="{{ route('login') }}">로그인</a>
+                                <a href="{{ route('regist') }}">회원가입</a>
                             @endif
+                            <a href="{{ route('admin.dashboard') }}">어드민</a>
+                            <a href="{{ route('blog_index') }}">Blog</a>
                         </div>
                     </div>
                     @yield('content')

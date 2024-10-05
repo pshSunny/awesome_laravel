@@ -118,6 +118,9 @@ brew upgrade autoconf
 - env (Jakka Prihatna) : .env 파일 코드를 보기쉽게 색깔 넣어주는 익스텐션
 - PHP IntelliSense (Damjan Cvetko) : PHP 고급 자동완성 및 리팩터링 지원
 - PHP Intelephense (Ben Mewburn) :  문서, 작업 영역, 기본 제공 생성자, 메서드 및 함수에 대한 자세한 서명 도움, 오류 허용 구문 분석기를 통해 열린 파일에 대한 여러 구문 분석 오류 진단
+- Todo Tree (Gruntfuggly) : Todo Tree 익스텐션
+  - Tags 설정에 '@TODO' 추가
+
 
 ## 단축키
 command+p : 파일로 이동
