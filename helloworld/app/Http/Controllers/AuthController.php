@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
@@ -16,9 +17,8 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users|max:255',
-            'password' => 'required|max:255'
+            'password' => [Password::defaults()]
         ]);
-
 
         $user = User::create(request(['name', 'email', 'password']));
         return redirect()->to('/auth/login');
