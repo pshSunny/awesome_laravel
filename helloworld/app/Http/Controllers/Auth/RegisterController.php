@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules\Password;
 
-class AuthController extends Controller
+class RegisterController extends Controller
 {
     public function create() {
         return view('auth.regist');
@@ -21,7 +23,17 @@ class AuthController extends Controller
         ]);
 
         $user = User::create(request(['name', 'email', 'password']));
-        return redirect()->to('/auth/login');
+
+        // 이메일 인증 전송 후 리다이렉트
+        event(new Registered($user));
+        return to_route('verification.notice');
+
+        // 로그인 처리 후 홈 라우트로 리다이렉트
+        // auth()->login($user); 
+        // return redirect()->to('/');
+
+        // 로그인 라우트로 리다이렉트
+        // return redirect()->to('/auth/login');
     }
 
     public function login() {
