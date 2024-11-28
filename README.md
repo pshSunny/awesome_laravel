@@ -125,3 +125,27 @@ brew upgrade autoconf
 ## 단축키
 command+p : 파일로 이동
 control+g : 줄 이동
+
+
+# 주요 파일
+app/Providers/RouteServiceProvider.php : 라우트 서비스 프로바이더 > 라우트 파일 지정
+app/Http/Middleware : 미들웨어 디렉터리
+app/Http/Kernel.php : 미들웨어 명시 (전역 미들웨어, 미들웨어 그룹, 개별 라우트 미들웨어)
+app/Http/Middleware/RedirectIfAuthenticated.php : guest 미들웨어 > 유저 로그인하지 않은 경우 컨트롤러 도달
+app/Http/Middleware/Authenticate.php : auth 미들웨어 > 유저 로그인 되어 있는 경우 컨트롤러 도달
+app/Http/Middleware/VerifyCsrfToken.php : CSRf Except 정의 미들웨어
+app/Http/Middleware/TrimStrings.php : 여백 처리 미들웨어
+Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class : 빈 값 null 변환하는 미들웨어
+Illuminate\Validation\Rules\Password : 비밀번호 유효성 검사 규칙 클래스
+app/Providers/PasswordServiceProvider.php : 비밀번호 유효성 검사 서비스 프로바이더
+
+
+# 프로젝트 갱신 & 재시작
+php artisan migrate
+npm run dev => 에셋 번들러 개발 환경용 빌드
+
+
+# .env > session 설정
+SESSION_DRIVER=database
+SESSION_CONNECTION=mysql
+
