@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -15,12 +16,13 @@ class RegisterController extends Controller
         return view('auth.regist');
     }
 
-    public function store(Request $request) {
-        $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users|max:255',
-            'password' => [Password::defaults()]
-        ]);
+    public function store(RegisterUserRequest $request) {
+        // 인자 Request $request -> RegisterUserRequest $request 변경 전 유효성 검증
+        // $request->validate([
+        //     'name' => 'required|max:255',
+        //     'email' => 'required|email|unique:users|max:255',
+        //     'password' => [Password::defaults()]
+        // ]);
 
         $user = User::create(request(['name', 'email', 'password']));
 
