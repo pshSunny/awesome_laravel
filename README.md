@@ -143,6 +143,7 @@ app/Providers/PasswordServiceProvider.php : 비밀번호 유효성 검사 서비
 # 프로젝트 갱신 & 재시작
 php artisan migrate
 npm run dev => 에셋 번들러 개발 환경용 빌드
+mailhog => macOS 개발환경용 로컬 메일 테스트 도구
 
 
 # .env > session 설정

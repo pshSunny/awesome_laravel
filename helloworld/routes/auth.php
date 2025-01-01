@@ -9,6 +9,16 @@ Route::controller(\App\Http\Controllers\Auth\RegisterController::class)->group(f
     });
 });
 
+Route::controller(App\Http\Controllers\Auth\EmailVerificationController::class)->group(function () {
+    Route::name('verification.')->prefix('/email')->group(function() {
+        Route::middleware('auth')->group(function() {
+            Route::get('/verify', 'notice')->name('notice');
+            Route::get('/verify/{id}/{hash}', 'verify')->name('verify');
+            Route::post('/verification-notification', 'send')->name('send');
+        });
+    });
+});
+
 Route::middleware('guest')->group(function () {
     // Route::get('/regist', [\App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('regist');
     // Route::post('/regist', [\App\Http\Controllers\Auth\RegisterController::class, 'store']);

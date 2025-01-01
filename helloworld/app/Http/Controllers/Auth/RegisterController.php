@@ -25,7 +25,8 @@ class RegisterController extends Controller
         $user = User::create(request(['name', 'email', 'password']));
 
         // 이메일 인증 전송 후 리다이렉트
-        event(new Registered($user));
+        event(new Registered($user)); // Registered 이벤트 : 이메일 인증 전송
+        auth()->login($user);
         return to_route('verification.notice');
 
         // 로그인 처리 후 홈 라우트로 리다이렉트
