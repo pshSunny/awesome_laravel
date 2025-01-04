@@ -105,19 +105,21 @@ Laravel 공식 업그레이드 가이드 : https://laravel.com/docs/11.x/upgrade
 brew update
 brew install php@8.2
 brew unlink php@8.1
-sudo brew services stop php@8.1
 brew link --overwrite php@8.2
 echo 'export PATH="/opt/homebrew/opt/php@8.2/bin:$PATH"' >> /Users/sunny/.zshrc
 echo 'export PATH="/opt/homebrew/opt/php@8.2/sbin:$PATH"' >> /Users/sunny/.zshrc
+# 새창에서
 php -v
-sudo brew services start php@8.2
-composer update
 valet use php@8.2
 valet status
-valet install
+valet restart
+brew services stop php@8.1
 ```
 
-## Compoer로 Laravel 프레임워크 업그레이드
+## 버전 갱신된 composer.json 파일을 git pull로 받은 경우
+`composer update`
+
+## Compoer로 Laravel 프레임워크 업그레이드하는 경우
 `composer require laravel/framework:^11.0 --update-with-dependencies`
 호환 이슈로 실패되면 공식 업그레이드 가이드 참고하여 composer.json 에서 버전 수정 후 `composer update` 실행
 
@@ -181,6 +183,7 @@ app/Providers/PasswordServiceProvider.php : 비밀번호 유효성 검사 서비
 
 
 # 프로젝트 갱신 & 재시작
+composer update
 php artisan migrate
 npm run dev => 에셋 번들러 개발 환경용 빌드
 mailhog => macOS 개발환경용 로컬 메일 테스트 도구
