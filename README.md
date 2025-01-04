@@ -9,89 +9,129 @@ MAC 개발환경
 `$ brew install php@8.1`
 
 # Composer 설치
-```
-$ brew install composer
+```bash
+brew install composer
 ~.composer/vendor/bin 디렉토리가 시스템 "PATH"에 있는지 확인
 ```
 
 # MySQL 설치
 ※ https://programmerjoon.tistory.com/23
-```
-$ brew install mysql@5.7 => root 계정 비밀번호 없이 mysql만 설치됨.
-$ brew services start mysql => 시스템 시작할 때 자동 실행 명령어 (X)
-$ mysql.server start => MySQL 실행
+```bash
+brew install mysql@5.7 => root 계정 비밀번호 없이 mysql만 설치됨.
+brew services start mysql => 시스템 시작할 때 자동 실행 명령어 (X)
+mysql.server start => MySQL 실행
 ```
 
 # Laravel 설치
-```
-$ composer global require "laravel/installer"
-$ echo $SHELL => 현재 사용중인 쉘 확인
-$ vi ~/.zshrc
+```bash
+composer global require "laravel/installer"
+echo $SHELL => 현재 사용중인 쉘 확인
+vi ~/.zshrc
 export PATH="$HOME/.composer/vendor/bin:$PATH"
-$ source ~/.zshrc => 설정파일 새로고침
-$ echo $PATH => PATH 목록확인
+source ~/.zshrc => 설정파일 새로고침
+echo $PATH => PATH 목록확인
 ```
 
 # Laravel Project 준비
-```
-$ cd awesome_laravel
-$ composer create-project laravel/laravel helloworld
+```bash
+cd awesome_laravel
+composer create-project laravel/laravel helloworld
 ```
 
 # git push
-```
-$ cd awesome_laravel
-$ git init
-$ git config --local --list
-$ git config --local user.name "pshSunny"
-$ git config --local user.email "psh@100yearshop.co.kr"
-$ git add .
-$ git commit -m "first commit"
-$ git branch -M main
-$ git remote add origin git@github.com:pshSunny/awesome_laravel.git
-$ git push -u origin main
+```bash
+cd awesome_laravel
+git init
+git config --local --list
+git config --local user.name "pshSunny"
+git config --local user.email "psh@100yearshop.co.kr"
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:pshSunny/awesome_laravel.git
+git push -u origin main
 ```
 ※ https://usingu.co.kr/frontend/git/한-컴퓨터에서-github-계정-여러개-사용하기/
 
 # Laravel Valet(발렛) 설치
 https://laravel.kr/docs/9.x/valet
-```
-$ composer global require laravel/valet => 글로벌 Composer 패키지로 설치할 수 있음
-$ valet install => Valet 및 DnsMasq, nginx 설치. 시스템 시작될 때 실행되도록 설정됨.
-$ ping foobar.test => 127.0.0.1로 응답하면 Valet 정상 설치된 것임.
+```bash
+composer global require laravel/valet => 글로벌 Composer 패키지로 설치할 수 있음
+valet install => Valet 및 DnsMasq, nginx 설치. 시스템 시작될 때 실행되도록 설정됨.
+ping foobar.test => 127.0.0.1로 응답하면 Valet 정상 설치된 것임.
 ```
 
 # Laravel Valet으로 사이트 동작
-```
-$ cd awesome_laravel/helloworld
-$ valet link => 디렉터리 이름 사용하여 http://helloworld.test 도메인으로 액세스
-$ valet link api.application => 서브도메인 액세스하는 경우
-$ valet links => 연결된 모든 디렉토리 목록 표시
-$ valet unlink => 사이트 심볼릭 링크 제거
+```bash
+cd awesome_laravel/helloworld
+valet link => 디렉터리 이름 사용하여 http://helloworld.test 도메인으로 액세스
+valet link api.application => 서브도메인 액세스하는 경우
+valet links => 연결된 모든 디렉토리 목록 표시
+valet unlink => 사이트 심볼릭 링크 제거
 
 또는,
-$ cd ~/Sites
-$ valet park => 디렉토리 파킹. 하위 디렉토리를 http://디렉토리명.test로 엑세스 가능
+cd ~/Sites
+valet park => 디렉토리 파킹. 하위 디렉토리를 http://디렉토리명.test로 엑세스 가능
 ```
 
 # ETC 설치
 ## xDebug 설치 (커버리지)
-```
+```bash
 pecl install xdebug
 ```
 
 ### 커버리지
+```bash
 XDEBUG_MODE=coverage php artisan test --coverage
+```
 
 ### perl 설치 안된 경우
-```
+```bash
 brew install perl
 ```
 
 ### "/usr/bin/perl5.30: bad interpreter: No such file or directory" 에러 발생한 경우
-```
+```bash
 brew update
 brew upgrade autoconf
+```
+
+# Laravel 11 Upgrade (from. 10)
+Laravel 공식 업그레이드 가이드 : https://laravel.com/docs/11.x/upgrade
+요구사항 : PHP 8.2 이상
+
+## PHP Version Up (from. php@8.1)
+```bash
+brew update
+brew install php@8.2
+brew unlink php@8.1
+sudo brew services stop php@8.1
+brew link --overwrite php@8.2
+echo 'export PATH="/opt/homebrew/opt/php@8.2/bin:$PATH"' >> /Users/sunny/.zshrc
+echo 'export PATH="/opt/homebrew/opt/php@8.2/sbin:$PATH"' >> /Users/sunny/.zshrc
+php -v
+sudo brew services start php@8.2
+composer update
+valet use php@8.2
+valet status
+valet install
+```
+
+## Compoer로 Laravel 프레임워크 업그레이드
+`composer require laravel/framework:^11.0 --update-with-dependencies`
+호환 이슈로 실패되면 공식 업그레이드 가이드 참고하여 composer.json 에서 버전 수정 후 `composer update` 실행
+
+## Larable 버전 확인
+`php artisan --version`
+Laravel Framework 11.0.6
+`composer show laravel/framework`
+```yaml
+name     : laravel/framework
+descrip. : The Laravel Framework.
+keywords : framework, laravel
+versions : * v11.0.6
+released : 2024-03-14, 9 months ago
+...
 ```
 
 
