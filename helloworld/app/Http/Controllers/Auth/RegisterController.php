@@ -13,7 +13,7 @@ use Illuminate\Validation\Rules\Password;
 class RegisterController extends Controller
 {
     public function create() {
-        return view('auth.regist');
+        return view('auth.register');
     }
 
     public function store(RegisterUserRequest $request) {
