@@ -162,12 +162,38 @@ released : 2024-03-14, 9 months ago
 - PHP Intelephense (Ben Mewburn) :  문서, 작업 영역, 기본 제공 생성자, 메서드 및 함수에 대한 자세한 서명 도움, 오류 허용 구문 분석기를 통해 열린 파일에 대한 여러 구문 분석 오류 진단
 - Todo Tree (Gruntfuggly) : Todo Tree 익스텐션
   - Tags 설정에 '@TODO' 추가
+- php cs fixer (junstyle) : php formatter
+  - https://github.com/junstyle/vscode-php-cs-fixer
+  - 확장 패키지 Configuration 설정 참고하여 .vscode/settings.json 수정
+    - "php-cs-fixer.executablePath"은 "${extensionPath}/php-cs-fixer.phar"으로 설정
+  - 단축키 설정
+    - php-cs-fixer: fix : Ctrl+Shift+F
+    - php-cs-fixer: fix this file : 미설정
+- Format HTML in PHP (rifi2k)
+  - 단축키 : Ctrl+Option+F
 
 
 ## 단축키
-command+p : 파일로 이동
-control+g : 줄 이동
+설정 열기: Cmd+,
+파일로 이동: Cmd+p
+줄 이동: Ctrl+g
+클래스 / 메소드 이동 : Cmd+click, 커서+F12 (전제:PHP Intelephense 플러그인)
+터미널 보기: Ctrl+`
+새터미널 보기: Ctrl+Shift+`
+터미널 포커스 이동: Shift+Cmd+[/]
+php-cs-fixer: fix: Ctrl+Shift+F
+Format HTML in PHP: Ctrl+Option+F
 
+
+# 프로젝트 갱신 & 재시작
+composer update
+php artisan migrate
+npm run dev => 에셋 번들러 개발 환경용 빌드
+mailhog => macOS 개발환경용 로컬 메일 테스트 도구
+
+# 참고 사이트
+라라벨 코리아: https://laravel.kr
+업그레이드 가이드(10.x > 11.0): https://laravel.com/docs/11.x/upgrade
 
 # 주요 파일
 app/Providers/RouteServiceProvider.php : 라우트 서비스 프로바이더 > 라우트 파일 지정
@@ -180,13 +206,6 @@ app/Http/Middleware/TrimStrings.php : 여백 처리 미들웨어
 Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class : 빈 값 null 변환하는 미들웨어
 Illuminate\Validation\Rules\Password : 비밀번호 유효성 검사 규칙 클래스
 app/Providers/PasswordServiceProvider.php : 비밀번호 유효성 검사 서비스 프로바이더
-
-
-# 프로젝트 갱신 & 재시작
-composer update
-php artisan migrate
-npm run dev => 에셋 번들러 개발 환경용 빌드
-mailhog => macOS 개발환경용 로컬 메일 테스트 도구
 
 
 # .env > session 설정
