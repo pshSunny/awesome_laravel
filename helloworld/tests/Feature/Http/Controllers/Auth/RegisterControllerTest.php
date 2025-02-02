@@ -42,7 +42,7 @@ class RegisterControllerTest extends TestCase
             route('verification.notice')
         );
 
-        $this->assertDatabaseHas('user', ['email', $email]); // 데이터베이스 검증
+        $this->assertDatabaseHas('users', ['email' => $email]); // 데이터베이스 검증
 
         $this->assertAuthenticated(); // 사용자 인증 여부 검증
 

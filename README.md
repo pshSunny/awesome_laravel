@@ -191,6 +191,34 @@ php artisan migrate
 npm run dev => 에셋 번들러 개발 환경용 빌드
 mailhog => macOS 개발환경용 로컬 메일 테스트 도구
 
+
+# 메일 테스트 환경: mailhog(macOS 개발환경용 로컬 메일 테스트 도구)
+## 설치 & 실행
+설치: brew install mailhog
+실행: mailhog
+백그라운드 실행: brew services restart mailhog
+URL: http://0.0.0.0:8025
+
+## .env > mail
+```
+MAIL_MAILER=smtp
+MAIL_HOST=localhost
+MAIL_PORT=1025
+```
+
+## 메일 테스트 코드
+```bash
+php artisan tinker
+
+use Illuminate\Support\Facades\Mail;
+
+Mail::raw('Test Mail', function ($message) {
+    $message->to('recipient@example.com')
+            ->subject('Test Subject');
+});
+```
+
+
 # 참고 사이트
 라라벨 코리아: https://laravel.kr
 업그레이드 가이드(10.x > 11.0): https://laravel.com/docs/11.x/upgrade
