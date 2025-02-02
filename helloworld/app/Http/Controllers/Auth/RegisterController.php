@@ -12,11 +12,13 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
-    public function create() {
+    public function create()
+    {
         return view('auth.register');
     }
 
-    public function store(RegisterUserRequest $request) {
+    public function store(RegisterUserRequest $request)
+    {
         // 인자 Request $request -> RegisterUserRequest $request 변경 전 유효성 검증
         // $request->validate([
         //     'name' => 'required|max:255',
@@ -32,18 +34,20 @@ class RegisterController extends Controller
         return to_route('verification.notice');
 
         // 로그인 처리 후 홈 라우트로 리다이렉트
-        // auth()->login($user); 
+        // auth()->login($user);
         // return redirect()->to('/');
 
         // 로그인 라우트로 리다이렉트
         // return redirect()->to('/auth/login');
     }
 
-    public function login() {
+    public function login()
+    {
         return view('auth.login');
     }
 
-    public function login_store(Request $request) {
+    public function login_store(Request $request)
+    {
         $credentials = request(['email', 'password']);
 
         if (Auth::attempt($credentials)) {
@@ -56,7 +60,8 @@ class RegisterController extends Controller
         ]));
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
