@@ -4,6 +4,8 @@ namespace Tests\Feature\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\ValidateSignature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -15,7 +17,10 @@ class EmailVerificationControllerTest extends TestCase
      */
     public function testReturnsVerifyEmailViewForUnverifiedUser(): void
     {
-        $this->withoutMiddleware(Authenticate::class);
+        $this->withoutMiddleware(Authenticate::class)
+        ->get(route('verification.notice'))
+        ->assertOk()
+        ->assertViewIs('auth.verify-email');
     }
 
     /**
