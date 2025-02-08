@@ -17,7 +17,10 @@
                         </div>
                         <div class="col-4">
                             @if (Auth::check())
-                                <a href="{{ route('logout') }}">로그아웃</a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit">로그아웃</button>
+                                </form>
                             @else
                                 <a href="{{ route('login') }}">로그인</a>
                                 <a href="{{ route('register') }}">회원가입</a>
