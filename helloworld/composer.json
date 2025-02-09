@@ -13,6 +13,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.17",
         "laravel/tinker": "^2.8",
+        "socialiteproviders/kakao": "^4.3",
+        "socialiteproviders/naver": "^4.1",
         "symfony/mailer": "7.1.6"
     },
     "require-dev": {

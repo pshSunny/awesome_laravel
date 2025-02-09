@@ -222,6 +222,11 @@ Mail::raw('Test Mail', function ($message) {
 # 참고 사이트
 라라벨 코리아: https://laravel.kr
 업그레이드 가이드(10.x > 11.0): https://laravel.com/docs/11.x/upgrade
+Socialite Providers(소셜로그인) : https://socialiteproviders.com
+GitHub Authorizing OAuth Apps : https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps
+네이버 로그인 API 명세 : https://developers.naver.com/docs/login/api/api.md
+카카오 로그인 : https://developers.kakao.com/docs/latest/ko/kakaologin/common
+Mockery : http://docs.mockery.io
 
 # 주요 파일
 app/Providers/RouteServiceProvider.php : 라우트 서비스 프로바이더 > 라우트 파일 지정

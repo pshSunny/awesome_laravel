@@ -25,7 +25,14 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // 소셜라이트 > 네이버
+        Event::listen(function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
+            $event->extendSocialite('naver', \SocialiteProviders\Naver\Provider::class);
+        });
+        // 소셜라이트 > 카카오
+        Event::listen(function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
+            $event->extendSocialite('kakao', \SocialiteProviders\Kakao\KakaoProvider::class);
+        });
     }
 
     /**
