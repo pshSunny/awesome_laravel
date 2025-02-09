@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\Provider;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
 use Illuminate\Http\Request;
@@ -14,7 +15,9 @@ class RegisterController extends Controller
 {
     public function create()
     {
-        return view('auth.register');
+        return view('auth.register', [
+            'providers' => Provider::cases(),
+        ]);
     }
 
     public function store(RegisterUserRequest $request)

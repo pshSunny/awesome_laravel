@@ -34,4 +34,7 @@
     </div>
     <input type="submit" value="회원 가입" class="btn btn-primary" />
 </form>
+
+@each('auth.social', $providers, 'provider')
+
 @endsection

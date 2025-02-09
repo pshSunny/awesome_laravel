@@ -7,11 +7,13 @@
     "require": {
         "php": "^8.2",
         "barryvdh/laravel-debugbar": "^3.14",
+        "doctrine/dbal": "^4.2",
         "guzzlehttp/guzzle": "^7.2",
-        "symfony/mailer": "7.1.6",
         "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^2.8"
+        "laravel/socialite": "^5.17",
+        "laravel/tinker": "^2.8",
+        "symfony/mailer": "7.1.6"
     },
     "require-dev": {
         "brianium/paratest": "^7.3",

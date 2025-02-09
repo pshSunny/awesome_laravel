@@ -20,4 +20,7 @@
         <p><strong>{{ $errors->first() }}</strong></p>
     @endif
 </form>
+
+@each('auth.social', $providers, 'provider')
+
 @endsection
