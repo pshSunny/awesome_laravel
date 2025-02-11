@@ -43,3 +43,12 @@ Route::controller(\App\Http\Controllers\Auth\SocialLoginController::class)->grou
         Route::get('/login/{provider}/callback', 'callback')->name('social.callback');
     });
 });
+
+Route::controller(\App\Http\Controllers\Auth\PasswordResetController::class)->group(function () {
+    Route::middleware('guest')->name('password.')->group(function () {
+        Route::get('/forget-password', 'request')->name('request');
+        Route::post('/forget-password', 'email')->name('email');
+        Route::get('/reset-password/{token}', 'reset')->name('reset');
+        Route::post('/reset-password', 'update')->name('update');
+    });
+});
