@@ -59,3 +59,6 @@ Route::controller(\App\Http\Controllers\Auth\PasswordConfirmController::class)->
         Route::post('/confirm-password', 'confirm');
     });
 });
+
+Route::singleton('profile', \App\Http\Controllers\Auth\ProfileController::class)
+->middleware('password.confirm');

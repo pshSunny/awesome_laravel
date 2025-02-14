@@ -21,6 +21,7 @@
                                     @csrf
                                     <button type="submit">로그아웃</button>
                                 </form>
+                                <a href="{{ route('profile.show') }}">개인정보 보기</a>
                             @else
                                 <a href="{{ route('login') }}">로그인</a>
                                 <a href="{{ route('register') }}">회원가입</a>
