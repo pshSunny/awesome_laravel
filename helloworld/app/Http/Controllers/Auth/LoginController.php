@@ -31,6 +31,9 @@ class LoginController extends Controller
             return back()->withErrors(['failed' => __('auth.failed')]);
         }
 
+        // 세션 고정 공격 방지 위해 사용자 세션 다시 생성
+        $request->session()->regenerate();
+
         // 사용자 접근 시도했던 페이지로 리턴
         return redirect()->intended();
     }
