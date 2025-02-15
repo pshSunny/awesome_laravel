@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers\Auth;
 
+use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -19,6 +21,18 @@ class RegisterControllerTest extends TestCase
     public function testReturnRegisterView()
     {
         $this->get(route('register'))->assertOk()->assertViewIs('auth.register');
+    }
+
+    /**
+     * 회원가입 폼 뷰 반환 실패(로그인 상태) 검증
+     */
+    public function testFailToReturnRegisterView()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user) // 로그인 된 것으로 간주
+        ->get(route('register'))
+        ->assertRedirect(RouteServiceProvider::HOME);
     }
 
     /**

@@ -15,7 +15,7 @@ use Tests\TestCase;
 class EmailVerificationControllerTest extends TestCase
 {
     /**
-     * verification.notice: 이메일 인증되지 않았을 경우 진입
+     * 이메일 재전송 폼 뷰 반환 검증
      */
     public function testReturnsVerifyEmailViewForUnverifiedUser(): void
     {
@@ -26,7 +26,16 @@ class EmailVerificationControllerTest extends TestCase
     }
 
     /**
-     * verification.verify: 이메일 인증 유입 경로
+     * 이메일 미인증 사용자 화면 뷰 반환 실패 검증
+     */
+    public function testFailToReturnsVerifyEmailViewForUnverifiedUser(): void
+    {
+        $this->get(route('verification.notice'))
+        ->assertRedirect(route('login'));
+    }
+
+    /**
+     * 이메일 인증 검증
      */
     public function testVerifyEmail(): void
     {
@@ -44,7 +53,7 @@ class EmailVerificationControllerTest extends TestCase
     }
 
     /**
-     * verification.send: 이메일 재전송
+     * 이메일 재전송 검증
      */
     public function testSendEmailForEmailVerification(): void
     {

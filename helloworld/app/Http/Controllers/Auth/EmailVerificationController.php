@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 class EmailVerificationController extends Controller
 {
     /**
+     * 이메일 재전송 폼 뷰 반환
      * 회원 가입하고 이메일 인증 전송 후 리다이렉트되는 화면
      */
     public function notice()

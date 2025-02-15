@@ -13,7 +13,7 @@ Route::controller(\App\Http\Controllers\Auth\EmailVerificationController::class)
     Route::name('verification.')->prefix('/email')->group(function () {
         Route::middleware('auth')->group(function () {
             Route::get('/verify', 'notice')->name('notice');
-            Route::get('/verify/{id}/{hash}', 'verify')->name('verify');
+            Route::get('/verify/{id}/{hash}', 'verify')->middleware('signed')->name('verify');
             Route::post('/verification-notification', 'send')->name('send');
         });
     });
@@ -54,7 +54,7 @@ Route::controller(\App\Http\Controllers\Auth\PasswordResetController::class)->gr
 });
 
 Route::controller(\App\Http\Controllers\Auth\PasswordConfirmController::class)->group(function () {
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/confirm-password', 'showPasswordConfirmationForm')->name('password.confirm');
         Route::post('/confirm-password', 'confirm');
     });
