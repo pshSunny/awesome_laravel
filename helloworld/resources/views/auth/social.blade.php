@@ -1,1 +1,1 @@
-<a href="{{  route('login.social', $provider) }}">{{ $provider->name }}</a> | 
+<a href="{{  route('login.social', $provider) }}" class="btn btn-outline-primary">{{ $provider->name }}</a>

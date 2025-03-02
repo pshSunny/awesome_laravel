@@ -51,7 +51,8 @@ class PasswordResetController extends Controller
         // 비밀번호 강제 설정 (email 속성 및 비밀번호 확인 등 유효성 검증  + token 검증)
         $status = Password::reset($request->validated(), function ($user, $password) {
             $user->forceFill([
-                'password' => Hash::make($password),
+                //'password' => Hash::make($password),
+                'password' => $password,
             ]) // 비밀번호 강제로 재설정
             ->setRememberToken(Str::random(60)); // RememberToken 초기화
 

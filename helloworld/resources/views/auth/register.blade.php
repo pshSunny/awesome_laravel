@@ -3,38 +3,42 @@
 @section('title', '회원가입')
 
 @section('content')
-<form action="{{ route('register') }}" method="post">
-    @csrf
-    <div class="row">
-        <div class="col-12 control-group">
-            <label for="name">이름</label>
-            <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="이름을 입력하세요." required />
-            @error('name')
-                <span>{{ $message }}</span>
-            @enderror
+    <form action="{{ route('register') }}" method="post">
+        @csrf
+        <div class="row mb-3">
+            <label for="name" class="col-sm-2 col-form-label">이름</label>
+            <div class="col-sm-10">
+                @php $invalid = $errors->has('name') ? 'is-invalid' : ''; @endphp
+                <input type="text" name="name" value="{{ old('name') }}" class="form-control {{ $invalid }}" placeholder="이름을 입력하세요." required />
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 control-group">
-            <label for="email">이메일</label>
-            <input type="text" name="email" value="{{ old('email') }}" class="form-control" placeholder="이메일을 입력하세요." required />
-            @error('email')
-                <span>{{ $message }}</span>
-            @enderror
+        <div class="row mb-3">
+            <label for="email" class="col-sm-2 col-form-label">이메일</label>
+            <div class="col-sm-10">
+                @php $invalid = $errors->has('email') ? 'is-invalid' : ''; @endphp
+                <input type="text" name="email" value="{{ old('email') }}" class="form-control {{ $invalid }}" placeholder="이메일을 입력하세요." required />
+                @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 control-group">
-            <label for="password">비밀번호</label>
-            <input type="password" name="password" class="form-control" placeholder="비밀번호를 입력하세요." required />
-            @error('password')
-                <span>{{ $message }}</span>
-            @enderror
+        <div class="row mb-3">
+            <label for="password" class="col-sm-2 col-form-label">비밀번호</label>
+            <div class="col-sm-10">
+                @php $invalid = $errors->has('password') ? 'is-invalid' : ''; @endphp
+                <input type="password" name="password" class="form-control {{ $invalid }}" placeholder="비밀번호를 입력하세요." required />
+                @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
-    </div>
-    <input type="submit" value="회원 가입" class="btn btn-primary" />
-</form>
+        <input type="submit" value="회원 가입" class="btn btn-primary" />
+    </form>
 
-@each('auth.social', $providers, 'provider')
-
+    <div class="btn-group mt-3" role="group">
+        @each('auth.social', $providers, 'provider')
+    </div>
 @endsection

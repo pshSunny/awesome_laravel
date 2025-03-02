@@ -41,6 +41,6 @@ class EmailVerificationController extends Controller
 
         $user->sendEmailVerificationNotification(); // 이메일 재전송
 
-        return back();
+        return back()->with('message', '이메일 인증 링크가 전송되었습니다.');
     }
 }
