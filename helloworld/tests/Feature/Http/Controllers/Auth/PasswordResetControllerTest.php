@@ -16,7 +16,8 @@ use Tests\TestCase;
 
 class PasswordResetControllerTest extends TestCase
 {
-    use WithFaker;
+    use RefreshDatabase; // 테스트 케이스가 한 번 실행되면 데이터베이스 초기화
+    use WithFaker; // 모델 팩토리에서 Faker($this->faker) 사용 허용
 
     /**
      * 비밀번호 재설정 요청 폼 뷰 반환 검증

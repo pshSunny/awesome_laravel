@@ -14,6 +14,9 @@ use Tests\TestCase;
 
 class EmailVerificationControllerTest extends TestCase
 {
+    use RefreshDatabase; // 테스트 케이스가 한 번 실행되면 데이터베이스 초기화
+    use WithFaker; // 모델 팩토리에서 Faker($this->faker) 사용 허용
+    
     /**
      * 이메일 재전송 폼 뷰 반환 검증
      */

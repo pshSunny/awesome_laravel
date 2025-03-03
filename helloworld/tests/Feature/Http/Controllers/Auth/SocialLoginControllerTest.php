@@ -12,7 +12,8 @@ use Tests\TestCase;
 
 class SocialLoginControllerTest extends TestCase
 {
-    use WithFaker;
+    use RefreshDatabase; // 테스트 케이스가 한 번 실행되면 데이터베이스 초기화
+    use WithFaker; // 모델 팩토리에서 Faker($this->faker) 사용 허용
 
     /**
      * 서비스 제공자의 권한 승인 페이지로 리다이렉트 검증
