@@ -43,6 +43,9 @@
                                 <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">어드민</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ route('blog_index') }}">Blog</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('blogs.index') }}">Blogs</a></li>
+                                <li><a class="dropdown-item" href="{{ route('dashboard.blogs') }}">블로그 대시보드</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -13,7 +13,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
-    use HasApiTokens, HasFactory, Notifiable, ResettablePassword;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use ResettablePassword;
 
     /**
      * The attributes that are mass assignable.
@@ -49,8 +52,17 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     /**
      * 비밀번호 해싱
      */
-    public function setPasswordAttribute($password) {
+    public function setPasswordAttribute($password)
+    {
         // $this->attributes['password'] = bcrypt($password);
         $this->attributes['password'] = Hash::make($password);
+    }
+
+    /**
+     * 블로그
+     */
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class); // User 한명이 여러 개의 Blog를 가질 수 있음
     }
 }

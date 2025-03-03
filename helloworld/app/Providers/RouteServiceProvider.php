@@ -40,7 +40,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('auth')
                 ->group(base_path('routes/auth.php'));
 
-            Route::middleware('web')
+            Route::middleware(['web', 'auth', 'password.confirm'])
+                ->prefix('/dashboard')
+                ->group(base_path('routes/dashboard.php'));
+                
+            Route::middleware(['web', 'auth', 'verified'])
                 ->group(base_path('routes/blog.php'));
 
             Route::middleware(['web', 'auth', 'is_admin', 'admin.ip'])

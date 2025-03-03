@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::resource('blogs', \App\Http\Controllers\BlogController::class);
+
+
 Route::get('/blog', [\App\Http\Controllers\BlogPostController::class, 'index'])->name('blog_index');
 Route::get('/blog/create', [\App\Http\Controllers\BlogPostController::class, 'create']);
 Route::post('/blog/create', [\App\Http\Controllers\BlogPostController::class, 'store']);
