@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('blogs', \App\Http\Controllers\BlogController::class);
 
+Route::controller(\App\Http\Controllers\SubscribeController::class)->group(function () {
+    Route::post('subscribe', 'subscribe')->name('subscribe');
+    Route::post('unsubscribe', 'unsubscribe')->name('unsubscribe');
+});
+
 
 Route::get('/blog', [\App\Http\Controllers\BlogPostController::class, 'index'])->name('blog_index');
 Route::get('/blog/create', [\App\Http\Controllers\BlogPostController::class, 'create']);

@@ -65,4 +65,12 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     {
         return $this->hasMany(Blog::class); // User 한명이 여러 개의 Blog를 가질 수 있음
     }
+
+    /**
+     * User 관점에서 Blog 구독(subscription) 지칭
+     */
+    public function subscriptions()
+    {
+        return $this->belongsToMany(Blog::class)->as('subscription');
+    }
 }

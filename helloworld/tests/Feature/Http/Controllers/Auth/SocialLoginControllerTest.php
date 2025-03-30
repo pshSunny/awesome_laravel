@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controlers\Auth;
+namespace Tests\Feature\Http\Controllers\Auth;
 
 use App\Enums\Provider;
 use Illuminate\Foundation\Testing\RefreshDatabase;

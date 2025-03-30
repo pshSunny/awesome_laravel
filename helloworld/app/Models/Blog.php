@@ -26,4 +26,12 @@ class Blog extends Model
     {
         return 'name';
     }
+
+    /**
+     * Blog 관점에서 User 내 구독자(subscriber) 지칭
+     */
+    public function subscribers()
+    {
+        return $this->belongsToMany(User::class)->as('subscription');
+    }
 }

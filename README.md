@@ -171,6 +171,9 @@ released : 2024-03-14, 9 months ago
     - php-cs-fixer: fix this file : 미설정
 - Format HTML in PHP (rifi2k)
   - 단축키 : Ctrl+Option+F
+- Supermaven
+  - free version으로 충분(이메일 입력)
+  - Auto Completion(자동완성), Cursor Prediction(코드 예측)을 제공하는데, 자동완성 위주로 사용해도 충분.
 
 
 ## 단축키
