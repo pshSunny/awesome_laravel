@@ -58,7 +58,8 @@ class BlogController extends Controller
         return view('blogs.show', [
             'blog' => $blog,
             'owned' => $user->blogs()->find($blog->id), // 블로그 소유 여부
-            'subscribed' => $blog->subscribers()->find($user->id) // 블로그 구독 여부
+            'subscribed' => $blog->subscribers()->find($user->id), // 블로그 구독 여부
+            'posts' => $blog->posts()->latest()->paginate()
         ]);
     }
 

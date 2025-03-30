@@ -38,4 +38,19 @@
             </form>
         </div>
     </div>
+
+    <h3>글</h3>
+    <ul>
+        @foreach ($blog->posts as $post)
+            <li>
+                <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
+                <a href="{{ route('posts.edit', $post) }}" class="btn btn-secondary btn-sm">수정</a>
+                <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">삭제</button>
+                </form>
+            </li>
+        @endforeach
+    </ul>
 @endsection

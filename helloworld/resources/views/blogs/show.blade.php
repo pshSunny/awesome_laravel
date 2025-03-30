@@ -24,4 +24,18 @@
             </form>
         @endunless
     @endunless
+
+    @auth
+        @can('create', [\App\Models\Post::class, $blog])
+            <div><a href="{{ route('blogs.posts.create', $blog) }}" class="btn btn-secondary btn-sm">글쓰기</a></div>
+        @endcan
+    @endauth
+
+    <ul>
+        @foreach ($posts as $post)
+            <li><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></li>    
+        @endforeach
+    </ul>
+
+    {{ $posts->links() }}
 @endsection
