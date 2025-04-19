@@ -165,10 +165,15 @@ released : 2024-03-14, 9 months ago
 - php cs fixer (junstyle) : php formatter
   - https://github.com/junstyle/vscode-php-cs-fixer
   - 확장 패키지 Configuration 설정 참고하여 .vscode/settings.json 수정
-    - "php-cs-fixer.executablePath"은 "${extensionPath}/php-cs-fixer.phar"으로 설정
+    - php-cs-fixer.executablePath : `"${extensionPath}/php-cs-fixer.phar"`
+    - php > editor.defaultFormatter : `"editor.defaultFormatter": "junstyle.php-cs-fixer"`
+  - .php-cs-fixer.php 설정 파일
+    - PhpCsFixer를 로컬 의존성으로 설치 : `composer require --dev friendsofphp/php-cs-fixer`
+    - .php-cs-fixer.php 파일을 프로젝트 루트에 배치 : `helloworld/.php-cs-fixer.php`
+    - VS Code settings.json 설정 : `"php-cs-fixer.config": "helloworld/.php-cs-fixer.php",`
   - 단축키 설정
-    - php-cs-fixer: fix : Ctrl+Shift+F
-    - php-cs-fixer: fix this file : 미설정
+    - php-cs-fixer: fix : Ctrl+Shift+F => 전체 프로젝트 또는 설정된 Finder 범위 전체 파일 포맷
+    - php-cs-fixer: fix this file : 미설정 => 현재 열려 있는 파일만 포맷
 - Format HTML in PHP (rifi2k)
   - 단축키 : Ctrl+Option+F
 - Supermaven
