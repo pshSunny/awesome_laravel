@@ -69,7 +69,10 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         return view('blogs.edit', [
-            'blog' => $blog
+            'blog' => $blog->load([
+                'comments.user',
+                'comments.commentable'
+            ])
         ]);
     }
 

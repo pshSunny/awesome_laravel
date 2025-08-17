@@ -14,3 +14,5 @@ Route::controller(\App\Http\Controllers\SubscribeController::class)->group(funct
 // 글 얕은 중첩 리소스 라우트 & 컨트롤러
 Route::resource('blogs.posts', \App\Http\Controllers\PostController::class)->shallow();
 
+// 댓글 얕은 중첩 리소스 라우트 & 컨트롤러
+Route::resource('posts.comments', \App\Http\Controllers\CommentController::class)->shallow()->only(['store', 'update', 'destroy']);

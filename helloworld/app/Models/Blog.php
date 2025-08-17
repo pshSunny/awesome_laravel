@@ -39,4 +39,17 @@ class Blog extends Model
     {
         return $this->hasMany(Post::class); // Blog에 속한 Post 리스트
     }
+
+    /**
+     * 관련 게시물을 통해 연결된 댓글을 검색하는 다대다-중계 관계입니다.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function comments()
+    {
+        // hasManyThrough : 댓글의 상위모델인 Post를 거치지 않고도 블러그에 소속된 모든 댓글 조회
+        // 댓글은 다형성 관계로 secondKey와 where() 사용
+        return $this->hasManyThrough(Comment::class, Post::class, secondKey: 'commentable_id')
+            ->where('commentable_type', Post::class);
+    }
 }

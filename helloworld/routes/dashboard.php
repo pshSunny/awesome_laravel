@@ -9,3 +9,6 @@ Route::get('/subscribers', \App\Http\Controllers\Dashboard\SubscriberController:
 
 // 내가 구독한 블로그
 Route::get('/subscriptions', \App\Http\Controllers\Dashboard\SubscriptionController::class)->name('dashboard.subscriptions');
+
+// 내 댓글
+Route::get('/comments', \App\Http\Controllers\Dashboard\CommentController::class)->name('dashboard.comments');

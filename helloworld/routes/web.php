@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return redirect()->route('blog_index');
+    return redirect()->route('blogs.index');
 });

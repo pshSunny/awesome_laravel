@@ -52,12 +52,16 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 글 읽기
      */
     public function show(Post $post)
     {
         return view('blogs.posts.show', [
-            'post' => $post
+            'post' => $post->loadCount('comments'),
+            'comments' => $post->comments() // show.blade.php 에서 $post->comments를 $comments로 변경해야 함.
+                ->whereNull('parent_id')
+                ->with(['user', 'replies.user'])
+                ->get()
         ]);
     }
 
