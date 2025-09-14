@@ -51,6 +51,10 @@
             </div>
         </nav>
 
+        <h1 class="text-3xl font-bold underline">
+            Hello world!
+        </h1>
+
         <div class="container">
             <h1>@yield('title')</h1>
             @yield('content')
